@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>聊天室</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+	<div class="container">
+		<div class="left">
+			<div class="contents_who">
+				Hi,<span id="from"></span>  chat with <span id="to"></span>
+			</div>
+			<div class="contents_show">
+				<div class="contents" id="contents"></div>
+			</div>
+
+			<div class="contents_input">
+				<input type="text" id="input_content" placeholder="say somthing..."></input>
+				<button id="say">Send</button>
+			</div>
+		</div>
+
+		<div class="right">
+			<h4>Online Users:</h4>
+			<div class="user_lists">
+				<ul id="list">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="/javascripts/chat.js"></script>
+  </body>
+</html>
