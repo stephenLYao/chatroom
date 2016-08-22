@@ -6,12 +6,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-
-
 var app = express();
-
-
-
+var xss = require('xss');
 
 // view engine setup
 app.set('port',process.env.PORT || 3001);
@@ -85,6 +81,10 @@ io.sockets.on('connection',function(socket){
   }
   
   socket.on('say',function(data){
+    data.msg = xss(data.msg,{     
+        stripIgnoreTag:     true,      
+        stripIgnoreTagBody: ['script']
+      });
     if(data.to == 'all'){
       socket.broadcast.emit('say', data);
     }else{
@@ -105,8 +105,12 @@ io.sockets.on('connection',function(socket){
   
 });
 
-server.listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+// server.listen(app.get('port'), function(){
+//   console.log('Express server listening on port ' + app.get('port'));
+// });
+
+server.listen(80,"120.27.109.240", function(){
+  console.log('Express server listening on port 80' );
 });
 
 module.exports = app;
