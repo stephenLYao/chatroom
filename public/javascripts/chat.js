@@ -11,6 +11,7 @@ $(document).ready(function(){
 	    if(data.to == from){
 	      $("#contents").append('<div style=color:#919191;font-size:14px;" >' + data.from + ' talk to you：</div><div>' + data.msg + '</div><br />');
 	    }
+	    scrollToBottom();
 	    
 	});
 	socket.on('offline',function(data){
@@ -21,6 +22,7 @@ $(document).ready(function(){
     		to = "all";
   		}
   		showSayTo();
+  		scrollToBottom();
 	});
 	socket.on('online',function(data){
 		if(data.user != from){
@@ -32,6 +34,7 @@ $(document).ready(function(){
 		$('#contents').append(sys + '<br/>');
 		flushUsers(data.users);
 		showSayTo();
+		scrollToBottom();
 	});
 
 	function flushUsers(users){
